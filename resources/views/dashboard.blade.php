@@ -8,7 +8,9 @@
     <title>MobilPillihan</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
     <style>
         .navbar {
@@ -84,6 +86,7 @@
 
         .search-button:hover {
             background-color: #FF6347;
+            transition: background-color 0.3s ease;
         }
 
         .nav-icons {
@@ -113,9 +116,10 @@
         }
 
         @media screen and (max-width: 576px) {
-            .wrapper{
+            .wrapper {
                 width: 100%;
             }
+
             .navbar {
                 display: flex;
                 justify-content: space-between;
@@ -123,7 +127,7 @@
                 background-color: #003366;
                 padding: 10px 20px;
                 width: 100%;
-                position:fixed;
+                position: fixed;
                 top: 0;
                 height: 8vh;
             }
@@ -145,7 +149,8 @@
                 border-radius: none;
                 background-color: none;
                 max-width: 600px;
-                width: 100%;
+                width: auto;
+                margin: 0 10px;
                 margin-top: -35px;
                 margin-left: 65px;
             }
@@ -170,12 +175,12 @@
                 margin-right: 2px;
             }
 
-            .nav-icons{
+            .nav-icons {
                 margin-top: -37px;
                 margin-left: 300px;
             }
 
-            .icon{
+            .icon {
                 width: 7px;
             }
         }
@@ -196,17 +201,14 @@
                     <button class="search-button" id="searchButton">Cari</button>
                 </div>
                 <div class="nav-icons">
-                    <a href="{{url('trackMobil') }}" class="icon"><i class="fa-solid fa-location-dot"></i></a>
-                    <a href="{{url('profile') }}" class="icon"><i class="fa-solid fa-user"></i></a>
+                    <a href="{{url('trackMobil') }}" class="icon"><i class="fas fa-map-marker-alt"></i></a>
+                    <a href="{{url('profile') }}" class="icon"><i class="fas fa-user"></i></a>
                 </div>
             </div>
         </nav>
-
-
         <div class="container-content">
             @yield('content')
         </div>
-
 
         <div class="container-fluid bg-light">
             <div class="container py-4">

@@ -106,6 +106,82 @@
         
     } */
 
+    .rating-container {
+        text-align: center;
+        font-family: Arial, sans-serif;
+    }
+
+    .rating-overview {
+        display: inline-flex;
+        align-items: baseline;
+    }
+
+    .rating-star {
+        color: #ffc107;
+        font-size: 2rem;
+        /* 32px */
+        margin-right: .25rem;
+    }
+
+    .rating-value {
+        font-size: 4rem;
+        /* 64px */
+        color: #333;
+    }
+
+    .rating-out-of {
+        font-size: 1rem;
+        /* 16px */
+        color: #6c757d;
+    }
+
+    .satisfaction-text {
+        color: #28a745;
+        font-size: 1rem;
+    }
+
+    .rating-details span {
+        font-size: .875rem;
+        /* 14px */
+        color: #6c757d;
+    }
+
+    .rating-bar-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.5rem;
+    }
+
+    .star-number {
+        display: inline-block;
+        width: 1.5rem;
+        color: #ffc107;
+        margin-right: 0.5rem;
+        text-align: right;
+    }
+
+    .progress-bar {
+        flex-grow: 1;
+        height: 1rem;
+        background-color: #ddd;
+        border-radius: 5px;
+        position: relative;
+        font-size: 0.875rem;
+        color: #333;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .progress-bar.bg-success {
+        background-color: #28a745;
+    }
+
+    .bg-success {
+        background-color: #28a745 !important;
+    }
+
     .card:hover {
         transform: scale(1.1);
     }
@@ -137,6 +213,7 @@
             font-size: 10px;
         }
     }
+    
 </style>
 
 <div class="audi-section">
@@ -144,7 +221,8 @@
         <div class="row align-items-center">
             <div class="card card-shadow d-flex flex-row">
                 <div class="col-md-6 img-container">
-                    <img src="https://www.carmudi.co.id/journal/wp-content/uploads/2017/08/Civic-Type-R-Carmudi-2-1024x768.jpg" class="card-img" alt="Bandingkan Motor">
+                    <img src="https://www.carmudi.co.id/journal/wp-content/uploads/2017/08/Civic-Type-R-Carmudi-2-1024x768.jpg"
+                        class="card-img" alt="Bandingkan Motor">
                 </div>
                 <div class="col-md-6 car-info">
                     <h2>Civic Turbo</h2>
@@ -164,39 +242,52 @@
 <div class="container mt-">
     <h1 class="mb-4">Average Rating of Civic Turbo Sport Edition</h1>
 
-    <h2 class="display-4">4.7/5</h2>
-
-    <div class="mb-2">
-        <div class="progress">
-            <div class="progress-bar bg-warning" role="progressbar" style="width: 84%" aria-valuenow="84" aria-valuemin="0" aria-valuemax="100">420 ⭐⭐⭐⭐⭐</div>
+    <div class="row justify-content-start">
+        <div class="col-sm-8 col-md-6 col-lg-4 rating-section">
+            <div class="col-auto rating-section">
+                <div class="rating-overview">
+                    <h2 class="rating-value">4.7<span class="rating-out-of">/5</span></h2>
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="total-ratings">1850 Penilaian</p>
+                </div>
+                <div class="rating-bars">
+                    <div class="rating-bars">
+                        <div class="rating-bar">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 80%;">1586</div>
+                            </div>
+                        </div>
+                        <div class="rating-bar">
+                            <span class="stars">⭐⭐⭐⭐</span>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 60%;">140</div>
+                            </div>
+                        </div>
+                        <div class="rating-bar">
+                            <span class="stars">⭐⭐⭐</span>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 40%;">73</div>
+                            </div>
+                        </div>
+                        <div class="rating-bar">
+                            <span class="stars">⭐⭐</span>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 20%;">21</div>
+                            </div>
+                        </div>
+                        <div class="rating-bar">
+                            <span class="stars">⭐</span>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 10%;">30</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p>508 Reviews</p>
+                </div>
+            </div>
         </div>
     </div>
-
-    <div class="mb-2">
-        <div class="progress">
-            <div class="progress-bar bg-warning" role="progressbar" style="width: 7%" aria-valuenow="7" aria-valuemin="0" aria-valuemax="100">35 ⭐⭐⭐⭐</div>
-        </div>
-    </div>
-
-    <div class="mb-2">
-        <div class="progress">
-            <div class="progress-bar bg-warning" role="progressbar" style="width: 2.4%" aria-valuenow="2.4" aria-valuemin="0" aria-valuemax="100">12 ⭐⭐⭐</div>
-        </div>
-    </div>
-
-    <div class="mb-2">
-        <div class="progress">
-            <div class="progress-bar bg-warning" role="progressbar" style="width: 1%" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100">5 ⭐⭐</div>
-        </div>
-    </div>
-
-    <div class="mb-4">
-        <div class="progress">
-            <div class="progress-bar bg-warning" role="progressbar" style="width: 0.4%" aria-valuenow="0.4" aria-valuemin="0" aria-valuemax="100">2 ⭐</div>
-        </div>
-    </div>
-
-    <p>508 Reviews</p>
 
     <h2 class="mb-4">Car Reviews</h2>
     <hr>

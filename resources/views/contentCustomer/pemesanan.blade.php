@@ -251,7 +251,7 @@
        
 
         if (selectedMethod === '1') {
-            document.getElementById('debitContent').innerHTML = `
+            document.getElementById('debitContent').innerHTML =
             <table>
                 <tr>
                     <td>
@@ -303,7 +303,7 @@
                 <button type="button" class="btn btn-danger" id="liveToastBtn">Bayar</button>
              </div>                       
             <!-- ... -->
-        `;
+        ;
 
             
             document.getElementById('cashContent').innerHTML = '';
@@ -326,7 +326,7 @@
             paymentModal.show();
         } else if (selectedMethod === '2') {
             // Tampilkan konten modal cash
-            document.getElementById('cashContent').innerHTML = `
+            document.getElementById('cashContent').innerHTML = 
             <!-- Konten untuk metode pembayaran Cash -->
             
             <table>
@@ -372,7 +372,7 @@
                 </tr>
             </table>
             <!-- ... -->
-        `;
+        ;
             document.getElementById('debitContent').innerHTML = '';
 
             paymentModal.show();

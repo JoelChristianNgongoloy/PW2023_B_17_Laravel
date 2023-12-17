@@ -92,6 +92,7 @@
         .nav-icons {
             display: flex;
             gap: 30px;
+            /* padding-bottom: 10px; */
         }
 
         .nav-icons i {
@@ -114,6 +115,16 @@
         .fab:hover {
             color: #333;
         }
+
+        /* Menambahkan style untuk gambar profil di navbar */
+        .navbar-profile-image {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid white;
+        }
+
 
         @media screen and (max-width: 576px) {
             .wrapper {
@@ -202,8 +213,12 @@
                 </div>
                 <div class="nav-icons">
                     <a href="{{url('trackMobil') }}" class="icon"><i class="fas fa-map-marker-alt"></i></a>
-                    <a href="{{url('profile') }}" class="icon"><i class="fas fa-user"></i></a>
+                    <a href="{{url('profile') }}" class="icon ">
+                        <!-- Contoh: Sisipkan gambar profil Anda di sini -->
+                        <img src="{{asset('img/images3.jpg')}}" alt="Profile" class="navbar-profile-image" style="">
+                    </a>
                 </div>
+
             </div>
         </nav>
         <div class="container-content">

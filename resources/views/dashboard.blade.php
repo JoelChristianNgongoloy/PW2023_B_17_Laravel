@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="{{ asset('img/MpLogo.png') }}" type="image/x-icon">
-    <title>MobilPillihan</title>
+    <title>@yield('title')</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
     <style>
@@ -84,6 +85,7 @@
 
         .search-button:hover {
             background-color: #FF6347;
+            transition: background-color 0.3s ease;
         }
 
         .nav-icons {
@@ -145,7 +147,8 @@
                 border-radius: none;
                 background-color: none;
                 max-width: 600px;
-                width: 100%;
+                width: auto;
+                margin: 0 10px;
                 margin-top: -35px;
                 margin-left: 65px;
             }
@@ -196,17 +199,14 @@
                     <button class="search-button" id="searchButton">Cari</button>
                 </div>
                 <div class="nav-icons">
-                    <a href="{{url('trackMobil') }}" class="icon"><i class="fa-solid fa-location-dot"></i></a>
-                    <a href="{{url('profile') }}" class="icon"><i class="fa-solid fa-user"></i></a>
+                    <a href="{{url('trackMobil') }}" class="icon"><i class="fas fa-map-marker-alt"></i></a>
+                    <a href="{{url('profile') }}" class="icon"><i class="fas fa-user"></i></a>
                 </div>
             </div>
         </nav>
-
-
         <div class="container-content">
             @yield('content')
         </div>
-
 
         <div class="container-fluid bg-light">
             <div class="container py-4">

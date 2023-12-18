@@ -7,7 +7,8 @@
     <link rel="shortcut icon" href="{{ asset('img/MpLogo.png') }}" type="image/x-icon">
     <title>Register: MobilPillihan.com</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
     <style>
         body {
@@ -93,7 +94,7 @@
                 font-size: small;
             }
 
-            .btn{
+            .btn {
                 font-size: medium;
             }
         }
@@ -105,20 +106,22 @@
         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="{{asset('img/Login3.jpg')}}" class="imgLogin d-block w-100" alt="..." />
+                    <img src="{{ asset('img/Login3.jpg') }}" class="imgLogin d-block w-100" alt="..." />
                 </div>
                 <div class="carousel-item">
-                    <img src="{{asset('img/Login4.jpg')}}" class="imgLogin d-block w-100" alt="..." />
+                    <img src="{{ asset('img/Login4.jpg') }}" class="imgLogin d-block w-100" alt="..." />
                 </div>
                 <div class="carousel-item">
-                    <img src="{{asset('img/Login1.jpg')}}" class="imgLogin d-block w-100" alt="..." />
+                    <img src="{{ asset('img/Login1.jpg') }}" class="imgLogin d-block w-100" alt="..." />
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
@@ -131,36 +134,50 @@
 
             </div>
             <div class="col-9">
-                <form action="{{url('/')}}">
+                @if (session('message'))
+                    <div class="alert alert-success">
+                        {{ session('message') }}
+                    </div>
+                @endif
+                @if (session('error'))
+                    <div class="alert alert-danger">
+                        <b>Oops!</b>{{ session('error') }}
+                    </div>
+                @endif
+                <form action="{{ route('actionRegister') }}" method="post">
+                    @csrf
                     <div class="form-floating mt-5">
-                        <input type="input" class="form-control" id="floatingInput" placeholder="yourname" style="border-right: none; border-left: none; border-top: none;" required>
+                        <input type="input" class="form-control" id="floatingInput" placeholder="yourname"
+                            style="border-right: none; border-left: none; border-top: none;" name="name" required>
                         <label for="floatingInput">Nama Lengkap</label>
                     </div>
                     <div class="form-floating mt-3">
-                        <input type="input" class="form-control" id="floatingInput" placeholder="yourusername" style="border-right: none; border-left: none; border-top: none;" required>
+                        <input type="input" class="form-control" id="floatingInput" placeholder="yourusername"
+                            style="border-right: none; border-left: none; border-top: none;" name="username" required>
                         <label for="floatingInput">Username</label>
                     </div>
                     <div class="form-floating mt-3">
-                        <input type="email" class="form-control" id="floatingInput" placeholder="email@gmail.com" style="border-right: none; border-left: none; border-top: none;" required>
+                        <input type="email" class="form-control" id="floatingInput" placeholder="email@gmail.com"
+                            style="border-right: none; border-left: none; border-top: none;" name="email" required>
                         <label for="floatingInput">Email</label>
                     </div>
                     <div class="form-floating mt-3 d-flex">
-                        <input type="password" class="form-control" id="password" placeholder="Password" style="border-right: none; border-left: none; border-top: none;" required>
-                        <img class="pass-icon" id="pass-icon" onclick="pass()" src="{{asset('img/hide.png')}}" alt="hide">
+                        <input type="password" class="form-control" id="password" placeholder="Password"
+                            style="border-right: none; border-left: none; border-top: none;" name="password" required>
+                        <img class="pass-icon" id="pass-icon" onclick="pass()" src="{{ asset('img/hide.png') }}"
+                            alt="hide">
                         <label for="password">Password</label>
                     </div>
 
                     <div class="form-floating mt-3">
-                        <input type="number" class="form-control" id="floatingInput" placeholder="No Telp" style="border-right: none; border-left: none; border-top: none;" required>
+                        <input type="number" class="form-control" id="floatingInput" placeholder="No Telp"
+                            style="border-right: none; border-left: none; border-top: none;" name="no_telp" required>
                         <label for="floatingInput">No Telepon</label>
                     </div>
                     <div class="form-floating mt-3">
-                        <input type="input" class="form-control" id="floatingInput" placeholder="yourAddres" style="border-right: none; border-left: none; border-top: none;" required>
+                        <input type="input" class="form-control" id="floatingInput" placeholder="yourAddres"
+                            style="border-right: none; border-left: none; border-top: none;" name="alamat" required>
                         <label for="floatingInput">Alamat Lengkap</label>
-                    </div>
-                    <div class="form-floating mt-3">
-                        <input type="date" class="form-control" id="floatingInput" placeholder="yourBirth" style="border-right: none; border-left: none; border-top: none;" required>
-                        <label for="floatingInput">Tanggal Lahir</label>
                     </div>
                     <div class="d-grid gap-2 col-5 mt-5 mx-auto">
                         <button class="btn btn-dark btn-lg" type="submit">Create account</button>
@@ -170,11 +187,12 @@
 
             <div class="d-flex mt-5">
                 <h6>Already have an account?</h6>
-                <h6><a href="{{url('/')}}">Log in</a></h6>
+                <h6><a href="{{ url('/') }}">Log in</a></h6>
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
 
     <script>
@@ -183,11 +201,11 @@
         function pass() {
             if (a == 1) {
                 document.getElementById('password').type = 'password';
-                document.getElementById('pass-icon').src = "{{asset('img/hide.png')}}";
+                document.getElementById('pass-icon').src = "{{ asset('img/hide.png') }}";
                 a = 0;
             } else {
                 document.getElementById('password').type = 'text';
-                document.getElementById('pass-icon').src = "{{asset('img/view.png')}}";
+                document.getElementById('pass-icon').src = "{{ asset('img/view.png') }}";
                 a = 1;
             }
         }

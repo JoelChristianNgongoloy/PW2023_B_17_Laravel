@@ -14,11 +14,18 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('username');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->rememberToken();
+            $table->string('no_telp');
+            $table->string('alamat');
+            $table->string('verify_key');
+            $table->string('img_profil')->nullable()->default('default.jpg');
+            $table->enum('type', ['regular', 'admin'])->default('regular');
+            $table->integer('active')->nullable();
             $table->timestamps();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->rememberToken();
         });
     }
 

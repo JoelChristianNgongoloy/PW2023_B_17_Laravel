@@ -4,9 +4,10 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminViewController;
+use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\MobilController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +38,20 @@ Route::post('register/action', [RegisterController::class, 'actionRegister'])->n
 Route::get('register/verify/{verify_key}', [RegisterController::class, 'verify'])->name('verify');
 
 Route::middleware(['auth', 'userType:regular'])->group(function () {
-    Route::get('profile', [HomeController::class, 'index'])->name('profile');
+    Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+    Route::get('trackMobil', [ProfileController::class, 'trackMobil']);
+    Route::get('profile/edit/{id}', [ProfileController::class, 'edit']);
+    Route::put('profile/edit/{id}', [ProfileController::class, 'update']);
+    Route::get('home', [HomePageController::class, 'index']);
+
+    Route::get('liatMobil/{id}', [HomePageController::class, 'liatMobil']);
+    Route::get('pemesanan/{id}', [HomePageController::class, 'getData'])->name('pemesanan');
+    Route::post('metodePembayaran/{id}', [HomePageController::class, 'metodePembayaran']);
+    Route::post('Pembayaran/{id}', [HomePageController::class, 'Pembayaran']);
+    Route::post('Diterima/{id}', [HomePageController::class, 'Diterima']);
+    Route::delete('delete/{id}', [HomePageController::class, 'destroy']);
+
+    Route::get('track', [HomePageController::class, 'trackMobil']);
 });
 
 Route::middleware(['auth', 'userType:admin'])->group(function () {
@@ -52,7 +66,6 @@ Route::middleware(['auth', 'userType:admin'])->group(function () {
     Route::delete('admin/tampilMobil/{id}', [MobilController::class, 'destroy']);
     Route::get('admin/tampilMobil/{id}', [MobilController::class, 'edit']);
     Route::put('admin/tampilMobil/{id}', [MobilController::class, 'update']);
-
 });
 
 Route::get('logout', [LoginController::class, 'actionLogout'])->name('actionLogout')->middleware('auth');

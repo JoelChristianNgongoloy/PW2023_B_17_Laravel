@@ -152,7 +152,7 @@
                     </tr>
                 @empty
                     <div class="alert alert-danger">
-                        Data Kelas Masih Kosong
+                        Data User Masih Kosong
                     </div>
                 @endforelse
             </table>

@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
     <style>
         .navbar {
@@ -58,23 +59,24 @@
 
         .search-container {
             display: flex;
-            padding: 7px 30px;
+            padding: 4px 10px 4px 10px;
             border-radius: 50px;
             background-color: #FFFFFF;
-            max-width: 600px;
-            width: 400px;
+            max-width: 400px;
+            width: 340px;
         }
 
         .search-input {
             flex-grow: 1;
-            padding: 10px;
+            padding-left: 30px;
+            width: 260px;
             border: none;
             outline: none;
             font-size: 16px;
         }
 
         .search-button {
-            padding: 10px 20px;
+            padding: 10px 15px;
             border: none;
             background-color: #003366;
             color: white;
@@ -115,9 +117,10 @@
         }
 
         @media screen and (max-width: 576px) {
-            .wrapper{
+            .wrapper {
                 width: 100%;
             }
+
             .navbar {
                 display: flex;
                 justify-content: space-between;
@@ -125,7 +128,7 @@
                 background-color: #003366;
                 padding: 10px 20px;
                 width: 100%;
-                position:fixed;
+                position: fixed;
                 top: 0;
                 height: 8vh;
             }
@@ -173,12 +176,12 @@
                 margin-right: 2px;
             }
 
-            .nav-icons{
+            .nav-icons {
                 margin-top: -37px;
                 margin-left: 300px;
             }
 
-            .icon{
+            .icon {
                 width: 7px;
             }
         }
@@ -191,16 +194,19 @@
     <div class="wrapper">
         <nav class="navbar navbar-expand-lg fixed-top">
             <div class="container-fluid">
-                <a href="{{url('homePage')}}">
+                <a href="{{ url('home') }}">
                     <img src="{{ asset('Img/MpLogo.png') }}" alt="Mobil Pilihan" class="logo">
                 </a>
                 <div class="search-container" style="margin-right: 100px">
-                    <input type="text" placeholder="Cari harga, spek dan lainnya" class="search-input" id="searchInput">
-                    <button class="search-button" id="searchButton">Cari</button>
+                    <form action="{{ url('home') }}" method="GET">
+                        <input type="text" placeholder="Cari harga, spek dan lainnya" class="search-input"
+                            id="searchInput" name="search">
+                        <button class="search-button" id="searchButton">Cari</button>
+                    </form>
                 </div>
                 <div class="nav-icons">
-                    <a href="{{url('trackMobil') }}" class="icon"><i class="fas fa-map-marker-alt"></i></a>
-                    <a href="{{url('profile') }}" class="icon"><i class="fas fa-user"></i></a>
+                    <a href="{{ url('trackMobil') }}" class="icon"><i class="fas fa-map-marker-alt"></i></a>
+                    <a href="{{ url('profile') }}" class="icon"><i class="fas fa-user"></i></a>
                 </div>
             </div>
         </nav>

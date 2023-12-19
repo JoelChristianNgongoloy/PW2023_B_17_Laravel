@@ -1,5 +1,9 @@
 @extends('dashAdmin')
 
+@section('title')
+    Data Mobil by {{ Auth::user()->name }}
+@endsection
+
 @section('content')
     <!-- Main content -->
     <style>
@@ -55,16 +59,17 @@
                     <tr>
                         <td>{{ $i++ }}</td>
                         <td>
-                            <img src="{{ asset('/public/images/' . $item->image) }}" alt="Image">
-                        </td>                        
+                            <img src="{{ asset('/public/images/' . $item->image) }}" class="object-fit-cover"
+                                style="height: 220px; width:150px;" alt="Image">
+                        </td>
                         <td>{{ $item['nama'] }}</td>
                         <td>{{ $item['tipe_mobil'] }}</td>
                         <td>{{ $item['tahun_produksi'] }}</td>
                         <td>{{ $item['warna'] }}</td>
                         <td>{{ $item['stok'] }}</td>
                         <td>{{ $item['deskripsi'] }}</td>
-                        <td>{{ $item['merk'] }}</td>
                         <td>{{ $item['harga_mobil'] }}</td>
+                        <td>{{ $item['merk'] }}</td>
                         <td>
 
                             <a href="{{ url('admin/tampilMobil/' . $item->id) }}" class="btn btn-primary"
@@ -91,9 +96,13 @@
                                                         <label for="inputPassword6" class="col-form-label">Nama</label>
                                                     </div>
                                                     <div class="col-8">
-                                                        <input type="text" id="inputPassword6" class="form-control"
+                                                        <input type="text" id="inputPassword6"
+                                                            class="form-control @error('nama') is-invalid @enderror"
                                                             aria-describedby="passwordHelpInline" name="nama"
                                                             value="{{ isset($item['nama']) ? $item['nama'] : old('nama') }}">
+                                                        @error('nama')
+                                                            {{ $message }}
+                                                        @enderror
                                                     </div>
                                                 </div>
                                                 <div class="row g-3 align-items-center justify-content-between mb-2">
@@ -102,9 +111,13 @@
                                                             Mobil</label>
                                                     </div>
                                                     <div class="col-8">
-                                                        <input type="text" id="inputPassword6" class="form-control"
+                                                        <input type="text" id="inputPassword6"
+                                                            class="form-control @error('tipe_mobil') is-invalid @enderror"
                                                             aria-describedby="passwordHelpInline" name="tipe_mobil"
                                                             value="{{ old('tipe_mobil', $item->tipe_mobil) }}">
+                                                        @error('tipe_mobil')
+                                                            {{ $message }}
+                                                        @enderror
                                                     </div>
                                                 </div>
                                                 <div class="row g-3 align-items-center justify-content-between mb-2">
@@ -113,9 +126,13 @@
                                                             Produksi</label>
                                                     </div>
                                                     <div class="col-8">
-                                                        <input type="number" id="inputPassword6" class="form-control"
+                                                        <input type="number" id="inputPassword6"
+                                                            class="form-control @error('tahun_produksi') is-invalid @enderror"
                                                             aria-describedby="passwordHelpInline" name="tahun_produksi"
                                                             value="{{ old('tahun_produksi', $item->tahun_produksi) }}">
+                                                        @error('tahun_produksi')
+                                                            {{ $message }}
+                                                        @enderror
                                                     </div>
                                                 </div>
                                                 <div class="row g-3 align-items-center justify-content-between mb-2">
@@ -123,9 +140,13 @@
                                                         <label for="inputPassword6" class="col-form-label">warna</label>
                                                     </div>
                                                     <div class="col-8">
-                                                        <input type="text" id="inputPassword6" class="form-control"
+                                                        <input type="text" id="inputPassword6"
+                                                            class="form-control @error('warna') is-invalid @enderror"
                                                             aria-describedby="passwordHelpInline" name="warna"
                                                             value="{{ old('warna', $item->warna) }}">
+                                                        @error('warna')
+                                                            {{ $message }}
+                                                        @enderror
                                                     </div>
                                                 </div>
                                                 <div class="row g-3 align-items-center justify-content-between mb-2">
@@ -133,9 +154,13 @@
                                                         <label for="inputPassword6" class="col-form-label">stok</label>
                                                     </div>
                                                     <div class="col-8">
-                                                        <input type="number" id="inputPassword6" class="form-control"
+                                                        <input type="number" id="inputPassword6"
+                                                            class="form-control @error('stok') is-invalid @enderror"
                                                             aria-describedby="passwordHelpInline" name="stok"
                                                             value="{{ old('stok', $item->stok) }}">
+                                                        @error('stok')
+                                                            {{ $message }}
+                                                        @enderror
                                                     </div>
                                                 </div>
                                                 <div class="row g-3 align-items-center justify-content-between mb-2">
@@ -144,9 +169,13 @@
                                                             class="col-form-label">deskripsi</label>
                                                     </div>
                                                     <div class="col-8">
-                                                        <input type="text" id="inputPassword6" class="form-control"
+                                                        <input type="text" id="inputPassword6"
+                                                            class="form-control @error('deskripsi') is-invalid @enderror"
                                                             aria-describedby="passwordHelpInline" name="deskripsi"
                                                             value="{{ old('deskripsi', $item->deskripsi) }}">
+                                                        @error('deskripsi')
+                                                            {{ $message }}
+                                                        @enderror
                                                     </div>
                                                 </div>
                                                 <div class="row g-3 align-items-center justify-content-between mb-2">
@@ -154,9 +183,13 @@
                                                         <label for="inputPassword6" class="col-form-label">merk</label>
                                                     </div>
                                                     <div class="col-8">
-                                                        <input type="text" id="inputPassword6" class="form-control"
+                                                        <input type="text" id="inputPassword6"
+                                                            class="form-control @error('merk') is-invalid @enderror"
                                                             aria-describedby="passwordHelpInline" name="merk"
                                                             value="{{ old('merk', $item->merk) }}">
+                                                        @error('merk')
+                                                            {{ $message }}
+                                                        @enderror
                                                     </div>
                                                 </div>
                                                 <div class="row g-3 align-items-center justify-content-between mb-2">
@@ -164,9 +197,13 @@
                                                         <label for="inputPassword6" class="col-form-label">harga</label>
                                                     </div>
                                                     <div class="col-8">
-                                                        <input type="text" id="inputPassword6" class="form-control"
+                                                        <input type="text" id="inputPassword6"
+                                                            class="form-control @error('harga_mobil') is-invalid @enderror"
                                                             aria-describedby="passwordHelpInline" name="harga_mobil"
                                                             value="{{ old('harga_mobil', $item->harga_mobil) }}">
+                                                        @error('harga_mobil')
+                                                            {{ $message }}
+                                                        @enderror
                                                     </div>
                                                 </div>
                                                 <div class="row g-3 align-items-center justify-content-between mb-2">
@@ -199,7 +236,7 @@
                     </tr>
                 @empty
                     <div class="alert alert-danger">
-                        Data Kelas Masih Kosong
+                        Data Mobil Masih Kosong
                     </div>
                 @endforelse
             </table>

@@ -27,15 +27,15 @@
 
     <div class="container">
         <div class="content">
-            <div class="row">
+            <div class="col">
                 <div class="col-lg-2">
                     <div class="card card-body h-100 justify-content-center">
                         <img style="border-radius: 50%, width: 100px, height:100px,"
-                            src="{{ Auth::user()->img_profile ?? asset('img/default.jpg') }}"
+                            src="{{ asset('/public/images/' . Auth::user()->img_profil) ?? asset('img/default.jpg') }}"
                             class="img-fluid rounded img-bukti-ngantor" alt="Foto Profil" />
                     </div>
                 </div>
-                <div class="col-lg-10">
+                <div class="row-lg-10">
                     <div class="card card-body h-100 justify-content-center">
                         <h1 class="fw-bold">{{ Auth::user()->name }}</h1>
                         <h5 class="mb-3">{{ Auth::user()->username }}</h5>
@@ -55,18 +55,104 @@
                                 <h5>{{ Auth::user()->email }}</h5>
                             </div>
                         </div>
-                        <div class=" btndan mt-2 d-grid col-3 ">
-                            {{-- <button type="submit" id="btnlog" class="btn btn-danger"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                                <style>
-                                    svg {
-                                        fill: #ffffff
-                                    }
-                                </style>
-                                <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z" />
-                            </svg> Log Out
-                        </button> --}}
-                            <a class="btn btn-danger" href="{{ route('actionLogout') }}"><i class="fa fa-user"></i>
-                                Logout</a>
+                        <div class=" btndan mt-2 d-grid col-4 ">
+                            <div class="d-flex justify-content-arround">
+                                <a class="btn btn-danger" href="{{ route('actionLogout') }}"><i class="fa fa-user"></i>
+                                    Logout</a>
+                                <a href="{{ url('profile/edit/' . Auth::user()->id) }}" class="btn btn-primary"
+                                    style="width: 70px" data-bs-toggle="modal" data-bs-target="#Backdrop">
+                                    Edit
+                                </a>
+                                <div class="modal fade" id="Backdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <form action="{{ url('profile/edit/' . Auth::user()->id) }}" method="POST"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            @method('PUT')
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fw-bold" id="staticBackdropLabel">Edit User by
+                                                        {{ Auth::user()->name }}</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row g-3 align-items-center justify-content-between mb-2">
+                                                        <div class="col-auto">
+                                                            <label for="inputPassword6" class="col-form-label">Nama</label>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <input type="text" id="inputPassword6" class="form-control"
+                                                                aria-describedby="passwordHelpInline" name="name"
+                                                                value="{{ isset(Auth::user()['name']) ? Auth::user()['name'] : old('name') }}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row g-3 align-items-center justify-content-between mb-2">
+                                                        <div class="col-auto">
+                                                            <label for="inputPassword6"
+                                                                class="col-form-label">Username</label>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <input type="text" id="inputPassword6" class="form-control"
+                                                                aria-describedby="passwordHelpInline" name="username"
+                                                                value="{{ old('username', Auth::user()->username) }}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row g-3 align-items-center justify-content-between mb-2">
+                                                        <div class="col-auto">
+                                                            <label for="inputPassword6" class="col-form-label">Email</label>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <input type="text" id="inputPassword6" class="form-control"
+                                                                aria-describedby="passwordHelpInline" name="email"
+                                                                value="{{ old('email', Auth::user()->email) }}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row g-3 align-items-center justify-content-between mb-2">
+                                                        <div class="col-auto">
+                                                            <label for="inputPassword6"
+                                                                class="col-form-label">Alamat</label>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <input type="text" id="inputPassword6" class="form-control"
+                                                                aria-describedby="passwordHelpInline" name="alamat"
+                                                                value="{{ old('alamat', Auth::user()->alamat) }}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row g-3 align-items-center justify-content-between mb-2">
+                                                        <div class="col-auto">
+                                                            <label for="inputPassword6" class="col-form-label">No
+                                                                Telepon</label>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <input type="text" id="inputPassword6" class="form-control"
+                                                                aria-describedby="passwordHelpInline" name="no_telp"
+                                                                value="{{ old('no_telp', Auth::user()->no_telp) }}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row g-3 align-items-center justify-content-between mb-2">
+                                                        <div class="col-auto">
+                                                            <label for="inputPassword6" class="col-form-label">Foto
+                                                                Profile</label>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <input type="file" id="inputPassword6"
+                                                                class="form-control" aria-describedby="passwordHelpInline"
+                                                                name="img_profil" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -75,50 +161,47 @@
         <div class="mt-4">
             <h1><strong>History</strong></h1>
             <hr>
-            <div class="row">
-                <div class="col-lg-10">
-                    <div class="card card-body h-100 justify-content-center">
-                        <h1><strong>CIVIC TURBO</strong></h1>
-                        <h4>Tanggal Pembayaran : 5-Oct-2023</h4>
-                        <h5>Status : <span class="badge rounded-pill text-bg-success">Lunas</span></h5>
-                    </div>
-                </div>
-                <div class="col-lg-2">
-                    <div class="card card-body h-100 justify-content-center">
-                        <img style="border-radius: 4px;"
-                            src="https://www.carmudi.co.id/journal/wp-content/uploads/2017/08/Civic-Type-R-Carmudi-2-1024x768.jpg"
-                            alt="gambarmobil">
-                        <div class="" style="text-align: center;">
-                            <h4><strong>CIVIC TURBO</strong></h4>
-                            <p>Telah diterima</p>
+            @if ($transaksi->count() > 0)
+                @foreach ($transaksi as $item)
+                    <div class="row mt-3">
+                        <div class="col-lg-10">
+                            <div class="card card-body h-100 justify-content-center">
+                                <h1><strong>{{ $item->mobil->nama }}</strong></h1>
+                                <h4>Tanggal Pembayaran: {{ $item->tanggal }}</h4>
+                                <h5>Status: <span
+                                        class="badge rounded-pill text-bg-{{ $item->status === 'Dibayar' ? 'danger' : ($item->status === 'Diterima' ? 'success' : 'info') }}">{{ $item->status }}</span>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="card card-body h-100 justify-content-center">
+                                <img style="border-radius: 4px;"
+                                    src="{{ asset('/public/images/' . $item->mobil->image) }}" alt="gambarmobil">
+                                <div class="" style="text-align: center;">
+                                    <h4><strong>{{ $item->mobil->nama }}</strong></h4>
+                                    @if ($item->status == 'Dibayar')
+                                        <form action="{{ url('Diterima/' . $item->id) }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn btn-primary">Apakah sudah Diterima?</button>
+                                        </form>
+                                    @else
+                                        <button disabled class="btn btn-primary">Sudah Diterima!</button>
+                                    @endif
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-lg-10">
-                    <div class="card card-body h-100 justify-content-center">
-                        <h1><strong>Mitsubishi L300</strong></h1>
-                        <h4>Tanggal Pembayaran : 10-Oct-2023</h4>
-                        <h5>Status : <span class="badge rounded-pill text-bg-danger">Belum Lunas</span></h5>
-                    </div>
-                </div>
-                <div class="col-lg-2">
-                    <div class="card card-body h-100 justify-content-center">
-                        <img style="border-radius: 4px;"
-                            src="https://www.sunstarmotor.id/wp-content/uploads/2020/05/l300-web-catalogue.jpg"
-                            alt="gambarmobil">
-                        <div class="" style="text-align: center;">
-                            <h4><strong>Mitsubishi L300</strong></h4>
-                            <p>Belum diterima</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                @endforeach
+            @else
+                <p>No transactions available.</p>
+            @endif
+
+
         </div>
     </div>
 
-
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     {{-- <script>
         document.getElementById('btnlog').addEventListener("click", function() {
             window.location.href = "{{ url('/') }}";

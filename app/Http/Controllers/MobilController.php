@@ -38,7 +38,9 @@ class MobilController extends Controller
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $image_Name = $image->getClientOriginalName();
+            $extension = $image->getClientOriginalExtension();
+            $currentDateTime = date('Ymd_His');
+            $image_Name = $currentDateTime . '_' . $extension;
             $image->move(public_path('/public/images/'), $image_Name);
         }
 
@@ -75,7 +77,7 @@ class MobilController extends Controller
             'harga_mobil' => 'required|integer',
             'warna' => 'required|string',
             'deskripsi' => 'required|string',
-            'stok' => 'required|integer',
+            'stok' => 'integer',
             'merk' => 'required|string',
         ]);
 
@@ -83,13 +85,15 @@ class MobilController extends Controller
             if ($mobil->image) {
                 unlink(public_path('public/images/' . $mobil->image));
             }
-
             $image = $request->file('image');
-            $image_Name = $image->getClientOriginalExtension();
+            $extension = $image->getClientOriginalExtension();
+            $currentDateTime = date('Ymd_His');
+            $image_Name = $currentDateTime . '.' . $extension;
             $image->move(public_path('public/images/'), $image_Name);
 
             $mobil->update(['image' => $image_Name]);
         }
+
 
         $mobil->update([
             'nama' => $request->nama,

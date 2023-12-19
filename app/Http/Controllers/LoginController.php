@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Transaksi;
 use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
@@ -22,6 +23,23 @@ class LoginController extends Controller
             return view('Login');
         }
     }
+    // public function login()
+    // {
+    //     if (Auth::check()) {
+    //         $userType = Auth::user()->type;
+
+    //         $userId = Auth::user()->id;
+    //         $transaksi = Transaksi::where('id_user', $userId)->get();
+
+    //         if ($userType === 'admin') {
+    //             return redirect('admin');
+    //         } elseif ($userType ==='regular') {
+    //             return redirect('contentCustomer.profile', compact('transaksi'));
+    //         }
+    //     } else {
+    //         return view('Login');
+    //     }
+    // }
 
     public function actionLogin(Request $request)
     {

@@ -147,38 +147,62 @@
                 <form action="{{ route('actionRegister') }}" method="post">
                     @csrf
                     <div class="form-floating mt-5">
-                        <input type="input" class="form-control" id="floatingInput" placeholder="yourname"
+                        <input type="input" class="form-control @error('name') is-invalid @enderror"
+                            id="floatingInput" placeholder="yourname"
                             style="border-right: none; border-left: none; border-top: none;" name="name" required>
                         <label for="floatingInput">Nama Lengkap</label>
+                        @error('name')
+                            {{ $message }}
+                        @enderror
                     </div>
                     <div class="form-floating mt-3">
-                        <input type="input" class="form-control" id="floatingInput" placeholder="yourusername"
+                        <input type="input" class="form-control @error('username') is-invalid @enderror"
+                            id="floatingInput" placeholder="yourusername"
                             style="border-right: none; border-left: none; border-top: none;" name="username" required>
                         <label for="floatingInput">Username</label>
+                        @error('username')
+                            {{ $message }}
+                        @enderror
                     </div>
                     <div class="form-floating mt-3">
-                        <input type="email" class="form-control" id="floatingInput" placeholder="email@gmail.com"
+                        <input type="email" class="form-control @error('email') is-invalid @enderror"
+                            id="floatingInput" placeholder="email@gmail.com"
                             style="border-right: none; border-left: none; border-top: none;" name="email" required>
                         <label for="floatingInput">Email</label>
+                        @error('email')
+                            {{ $message }}
+                        @enderror
                     </div>
                     <div class="form-floating mt-3 d-flex">
-                        <input type="password" class="form-control" id="password" placeholder="Password"
+                        <input type="password" class="form-control @error('password') is-invalid @enderror"
+                            id="password" placeholder="Password"
                             style="border-right: none; border-left: none; border-top: none;" name="password" required>
                         <img class="pass-icon" id="pass-icon" onclick="pass()" src="{{ asset('img/hide.png') }}"
                             alt="hide">
                         <label for="password">Password</label>
                     </div>
+                    @error('password')
+                        {{ $message }}
+                    @enderror
 
                     <div class="form-floating mt-3">
-                        <input type="number" class="form-control" id="floatingInput" placeholder="No Telp"
+                        <input type="number" class="form-control @error('no_telp') is-invalid @enderror"
+                            id="floatingInput" placeholder="No Telp"
                             style="border-right: none; border-left: none; border-top: none;" name="no_telp" required>
                         <label for="floatingInput">No Telepon</label>
+                        @error('no_telp')
+                            {{ $message }}
+                        @enderror
                     </div>
                     <div class="form-floating mt-3">
-                        <input type="input" class="form-control" id="floatingInput" placeholder="yourAddres"
+                        <input type="input" class="form-control @error('alamat') is-invalid @enderror"
+                            id="floatingInput" placeholder="yourAddres"
                             style="border-right: none; border-left: none; border-top: none;" name="alamat" required>
                         <label for="floatingInput">Alamat Lengkap</label>
                     </div>
+                    @error('alamat')
+                        {{ $message }}
+                    @enderror
                     <div class="d-grid gap-2 col-5 mt-5 mx-auto">
                         <button class="btn btn-dark btn-lg" type="submit">Create account</button>
                     </div>

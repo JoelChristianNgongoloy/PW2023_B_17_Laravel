@@ -19,6 +19,15 @@ class RegisterController extends Controller
 
     public function actionRegister(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required|string|max:255',
+            'username' => 'required|string|unique:users|max:255',
+            'email' => 'required|email|unique:users|max:255',
+            'password' => 'required|string|min:8|regex:/[A-Za-z0-9!@#$%^&*()_+]/',
+            'no_telp' => 'required|regex:/^08[0-8]{9,}$/',
+            'alamat' => 'required|string|max:255',
+        ]);
+
         $existingUser = User::where('email', $request->email)->first();
 
         if ($existingUser) {
@@ -71,11 +80,9 @@ class RegisterController extends Controller
                     'active' => 1,
                     'email_verified_at' => date('Y-m-d H:i:s'),
                 ]);
-            return "verifikasi berhasil. Akun anda sudah aktif.";
+            return view('contentCustomer.verify');
         } else {
             return "Keys tidak valid";
         }
     }
-
-    
 }

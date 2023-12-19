@@ -228,7 +228,7 @@
                     <h2>Civic Turbo</h2>
                     <p>Rp 7,5 – 1 Milyar Perkiraan Harga di Medan</p>
                     <p>Dp Rp1,88 Milyar Angsuran : Rp 176,27 Juta x 36</p>
-                    <p><a href="{{url('pemesanan')}}" class="btn btn-primary px-4">Beli</a></p>
+                    <p><a href="{{url('transaksi')}}" class="btn btn-primary px-4">Beli</a></p>
                     <p>Jangan lewatkan tawaran terbaik bulan ini.</p>
                     <p>
                         <button class="btn btn-light"><i class="fas fa-share-alt"></i> Bagikan</button>

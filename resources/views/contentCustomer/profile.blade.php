@@ -116,19 +116,21 @@
         <div class="row">
             <div class="col-lg-10">
                 <div class="card card-body h-100 justify-content-center">
-                    <h1><strong>CIVIC TURBO</strong></h1>
-                    <h4>Tanggal Pembayaran : 5-Oct-2023</h4>
-                    <h5>Status : <span class="badge rounded-pill text-bg-success">Lunas</span></h5>
+                    <h1><strong>{{ $transaksi->nama_mobil }}</strong></h1>
+                    <h4>Tanggal Pembayaran : {{ $transaksi->tanggal_pembayaran }}</h4>
+                    <h5>Status : <span class="badge rounded-pill text-bg-success">{{ $transaksi->status }}</span></h5>
                     <div style="text-align: right;">
-                        <button type="button" class="btn btn-success" style="width: 150px;">Sudah diterima</button>
+                        <form action="{{ route('transaksi.updateStatus') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $transaksi->id }}">
+                            <button type="submit" class="btn btn-success" style="width: 150px;">Sudah diterima</button>
+                        </form>
                     </div>
                 </div>
             </div>
             <div class="col-lg-2">
                 <div class="card card-body h-100 justify-content-center">
-                    <img style="border-radius: 4px;"
-                        src="https://www.carmudi.co.id/journal/wp-content/uploads/2017/08/Civic-Type-R-Carmudi-2-1024x768.jpg"
-                        alt="gambarmobil">
+                    <img style="border-radius: 4px;" src="{{ $transaksi->gambar_mobil }}" alt="gambarmobil">
                 </div>
             </div>
         </div>

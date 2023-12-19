@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pemesanan;
+use App\Models\Transaksi;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
-class PemesananController extends Controller
+class TransaksiController extends Controller
 {
 
     /**
@@ -16,7 +16,7 @@ class PemesananController extends Controller
      */
     public function index()
     {
-        $orders = Pemesanan::with('user')->paginate(10);
+        $orders = Transaksi::with(['user', 'mobil'])->paginate(10);
         return response()->json(['data' => $orders], 200);
     }
 
@@ -25,21 +25,30 @@ class PemesananController extends Controller
      */
     public function store(Request $request)
     {
-        Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'id_user' => 'required|exists:users,id',
             'id_mobil' => 'required|exists:mobil,id',
             'metode_pembayaran' => 'required|in:MANDIRI,BCA,BRI,BNI',
             // Tambahkan validasi lain sesuai kebutuhan
-        ])->validate();
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
 
         try {
             DB::beginTransaction();
-            $order = Pemesanan::create($request->all());
+
+            $transaksi = new Transaksi($validator->validated());
+            $transaksi->status = 'Dibayar'; // Atau status awal yang lain
+            $transaksi->save();
+
+
             DB::commit();
-            return response()->json(['message' => 'Order created successfully', 'data' => $order], 201);
+            return response()->json(['message' => 'Pemesanan berhasil disimpan', 'data' => $transaksi], 201);
         } catch (Exception $e) {
             DB::rollBack();
-            return response()->json(['message' => $e->getMessage()], 400);
+            return response()->json(['message' => 'Terjadi kesalahan pada saat menyimpan pemesanan', 'error' => $e->getMessage()], 400);
         }
     }
 
@@ -49,7 +58,7 @@ class PemesananController extends Controller
     public function show($id)
     {
         try {
-            $order = Pemesanan::with('user')->findOrFail($id);
+            $order = Transaksi::with('user')->findOrFail($id);
             return response()->json(['data' => $order], 200);
         } catch (Exception $e) {
             return response()->json(['message' => 'Order not found'], 404);
@@ -68,7 +77,7 @@ class PemesananController extends Controller
         ])->validate();
 
         try {
-            $pemesanan = Pemesanan::findOrFail($id);
+            $pemesanan = Transaksi::findOrFail($id);
             $pemesanan->update($request->all());
             return response()->json(['message' => 'Order updated successfully', 'data' => $pemesanan], 200);
         } catch (Exception $e) {
@@ -82,11 +91,35 @@ class PemesananController extends Controller
     public function destroy($id)
     {
         try {
-            $order = Pemesanan::findOrFail($id);
+            $order = Transaksi::findOrFail($id);
             $order->delete();
             return response()->json(['message' => 'Order deleted successfully'], 200);
         } catch (Exception $e) {
             return response()->json(['message' => 'Order not found'], 404);
         }
     }
+
+    // Dalam TransaksiController atau controller yang relevan
+
+    // Contoh isi dari TransaksiController.php
+    public function showFormPembayaran()
+    {
+        $metodePembayaran = ['MANDIRI', 'BCA', 'BRI', 'BNI']; // Contoh data
+        return view('contentCustomer.transaksi', compact('metodePembayaran'));
+    }
+
+
+    
+
+    // public function showTransaction()
+    // {
+    //     $trx = [
+    //         'id' => 1,
+    //         'nama_mobil' => 'CIVIC TURBO',
+    //         // Informasi transaksi lainnya
+    //     ];
+
+    //     return view('nama_view', compact('trx'));
+    // }
+
 }

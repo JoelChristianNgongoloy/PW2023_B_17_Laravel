@@ -104,19 +104,58 @@
     }
 </style>
 
+@php
+$transaksi = [
+[
+'id' => 1,
+'id_mobil' => 'Civic Turbo',
+'id_user' => 2,
+'metode_pembayaran' => 'BCA',
+'status' => 'Lunas',
+'tanggal' => '2023-12-03 19:51:51'
+],
+[
+'id' => 2,
+'id_mobil' => 'Accord Hybrid',
+'id_user' => 3,
+'metode_pembayaran' => 'Mandiri',
+'status' => 'Telah Diterima',
+'tanggal' => '2023-12-05 14:30:00'
+],
+[
+'id' => 3,
+'id_mobil' => 'Hybrid',
+'id_user' => 4,
+'metode_pembayaran' => 'Mandiri',
+'status' => 'Lunas',
+'tanggal' => '2023-12-05 14:30:00'
+],
+// Tambahkan lebih banyak transaksi sesuai kebutuhan
+];
+@endphp
+
 <div class="container mt-5 pt-5">
-    <div class="card">
+    @foreach ($transaksi as $trx)
+    <div class="card mb-3">
         <div class="card-body">
-            <div class="header">
-                <h3>Civic Turbo</h3>
+             <div class="header">
+                <h3>{{ $trx['id_mobil'] }}</h3>
             </div>
-            <p>Dikirimkan pada 13 Nov 2023</p>
+            <p>Dikirimkan pada {{ $trx['tanggal'] }}</p>
             <div class="status-container">
+                @if ($trx['status'] == 'Lunas')
+                <div class="circle active"></div>
+                <div class="line active"></div>
+                <div class="circle active"></div>
+                <div class="line"></div>
+                <div class="circle"></div>
+                @elseif ($trx['status'] == 'Telah Diterima')
                 <div class="circle active"></div>
                 <div class="line active"></div>
                 <div class="circle active"></div>
                 <div class="line active"></div>
                 <div class="circle active"></div>
+                @endif
             </div>
             <div class="status-labels d-flex justify-content-between mt-2">
                 <span>Lunas</span>
@@ -125,4 +164,7 @@
             </div>
         </div>
     </div>
-    @endsection
+    @endforeach
+</div>
+
+@endsection

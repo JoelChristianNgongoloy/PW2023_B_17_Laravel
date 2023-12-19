@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\TransaksiController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TrackMobilController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,13 +39,15 @@ Route::get('/profile', function () {
     return view('contentCustomer/profile');
 });
 
-Route::get('/pemesanan', function () {
-    return view('contentCustomer/pemesanan');
+Route::get('/transaksi', function () {
+    return view('contentCustomer/transaksi');
 });
 
 Route::get('/homePage', function () {
     return view('contentCustomer/homePage');
 });
+
+
 
 Route::get('/admin', function () {
     return view('viewAdmin/admin', [
@@ -137,3 +141,10 @@ Route::get('/liatMobil', function () {
 Route::get('/trackMobil', function () {
     return view('contentCustomer/trackMobil');
 });
+
+Route::get('/track-mobil', [TrackMobilController::class, 'index']);
+
+
+Route::get('/transaksi', [TransaksiController::class, 'showFormPembayaran']);
+
+Route::post('/transaksi/update-status', [TransaksiController::class, 'updateStatus'])->name('transaksi.updateStatus');

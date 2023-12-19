@@ -1,4 +1,4 @@
-<!-- @extends('dashboard')
+@extends('dashboard')
 @section('content')
 
 <style>
@@ -25,7 +25,7 @@
         <div class="col-lg-7">
             <div>
                 <div class="card card-body justify-content-center">
-                        
+
                     <div class="row g-3 align-items-center" style="justify-content: space-between;">
                         <div class="col-auto">
                             <label for="inputText6" class="col-form-label">Nama Lengkap</label>
@@ -76,10 +76,12 @@
                             <label for="inputemail6" class="col-form-label">Metode</label>
                         </div>
                         <div class="col-6">
-                            <select class="form-select" id="metodePembayaran" aria-label="Default select example">
+                            <select class="form-select" id="metodePembayaran" aria-label="Default select example"
+                                name="metode_pembayaran">
                                 <option selected>Pilih Metode</option>
-                                <option value="1">Debit/Credit Card</option>
-                                <option value="2">Cash</option>
+                                @foreach($metodePembayaran as $metode)
+                                <option value="{{ $metode }}">{{ $metode }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -142,11 +144,26 @@
                             <p>Rp.1.001.000.000</p>
                         </div>
                     </div>
-                    
+
                     <div class="row g-3 align-items-center" style="justify-content:space-between;">
                         <div class="d-grid gap-2 col-5 mx-auto">
                             <button type="button" class="btn btn-danger" id="batal" style="border-radius: 10px;">
                                 Batalkan</button>
+                        </div>
+                        <div class="d-grid gap-2 col-5 mx-auto">
+                            <button type="button" id="showModalBtn" class="btn btn-link btn-sm" data-bs-toggle="modal"
+                                style="background-color: green; color: white; font-size: 17px; padding: 6px; border-radius: 10px; text-decoration: none;">
+                                Bayar <svg xmlns="http://www.w3.org/2000/svg" height="1em"
+                                    viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                    <style>
+                                        svg {
+                                            fill: #ffffff
+                                        }
+                                    </style>
+                                    <path
+                                        d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" />
+                                </svg>
+                            </button>
                         </div>
                         <div class="d-grid gap-2 col-5 mx-auto">
                             <div class="toast-container position-fixed bottom-0 end-0 p-3">
@@ -169,7 +186,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"></script> -->
+    crossorigin="anonymous"></script>
 
 <!-- <script>
     document.getElementById('batal').addEventListener("click", function () {
@@ -179,4 +196,4 @@
 
 
 
-<!-- @endsection -->
+@endsection

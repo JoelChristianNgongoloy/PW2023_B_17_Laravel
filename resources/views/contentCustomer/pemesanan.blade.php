@@ -1,5 +1,8 @@
 @extends('dashboard')
 @section('content')
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-MFmfKu97qqe8fNlvUc1QlKxxqtdF7CugTdCqv8sBZ7Py8QbbtvqoHTi9O0JFbv3r" crossorigin="anonymous">
 <style>
     .content {
         display: flex;

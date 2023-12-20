@@ -79,6 +79,8 @@ class HomePageController extends Controller
                     'tanggal' => now(),
                 ]);
 
+                sleep(2);
+
                 return view('contentCustomer.pembayaran', compact('transaksi'));
             } else {
 
@@ -95,6 +97,8 @@ class HomePageController extends Controller
             $transaksi->status = 'Dibayar';
             $transaksi->save();
         }
+
+        sleep(2);
 
         return redirect('trackMobil');
     }

@@ -184,7 +184,7 @@
                             </div>
                             <div class="d-grid gap-2 col-5 mx-auto">
                                 <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                    data-bs-target="#staticBackdrop">
+                                    data-bs-target="#staticBackdrop" onclick="SimpanMetode()">
                                     Lanjutkan <svg xmlns="http://www.w3.org/2000/svg" height="1em"
                                         viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                                         <style>
@@ -294,7 +294,7 @@
                                                         @csrf <button type = "button" class = "btn btn-secondary" data -
                                                             bs - dismiss = "modal"> Close </button> <button
                                                             type = "submit" class = "btn btn-primary"
-                                                            onclick="switchAnimation()"> Bayar </button>
+                                                            onclick="SimpanMetode()"> Bayar </button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -343,4 +343,21 @@
                 }, 1000);
             }
         </script> -->
+
+        <script>
+            function SimpanMetode() {
+                var metodePembayaran = document.getElementById('metodePembayaran').value;
+                if (metodePembayaran !== "") {
+                    showSuccessToast();
+                } else {
+                }
+            }
+
+            function showSuccessToast() {
+                var toast = new bootstrap.Toast(document.getElementById('liveToast'), {
+                    delay: 3000
+                });
+                toast.show();
+            }
+        </script>
     @endsection

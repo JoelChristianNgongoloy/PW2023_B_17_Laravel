@@ -26,14 +26,14 @@ class MobilController extends Controller
     {
 
         $this->validate($request, [
-            'nama' => 'required|string',
-            'tipe_mobil' => 'required|string',
-            'tahun_produksi' => 'required|integer',
-            'harga_mobil' => 'required|integer',
-            'warna' => 'required|string',
-            'deskripsi' => 'required|string',
-            'stok' => 'required|integer',
-            'merk' => 'required|string',
+            'nama' => 'required',
+            'tipe_mobil' => 'required',
+            'tahun_produksi' => 'required',
+            'harga_mobil' => 'required',
+            'warna' => 'required',
+            'deskripsi' => 'required',
+            'stok' => 'required',
+            'merk' => 'required|in:Honda,Toyota,BMW',
         ]);
 
         if ($request->hasFile('image')) {
@@ -43,7 +43,6 @@ class MobilController extends Controller
             $image_Name = $currentDateTime . '_' . $extension;
             $image->move(public_path('/public/images/'), $image_Name);
         }
-
 
         $mobil = Mobil::create([
             'nama' => $request->nama,
@@ -71,14 +70,14 @@ class MobilController extends Controller
         $mobil = Mobil::find($id);
 
         $this->validate($request, [
-            'nama' => 'required|string',
-            'tipe_mobil' => 'required|string',
-            'tahun_produksi' => 'required|integer',
-            'harga_mobil' => 'required|integer',
-            'warna' => 'required|string',
-            'deskripsi' => 'required|string',
-            'stok' => 'integer',
-            'merk' => 'required|string',
+            'nama' => 'required',
+            'tipe_mobil' => 'required',
+            'tahun_produksi' => 'required',
+            'harga_mobil' => 'required',
+            'warna' => 'required',
+            'deskripsi' => 'required|max:255',
+            'stok' => 'required',
+            'merk' => 'required|in:Honda,Toyota,BMW',
         ]);
 
         if ($request->hasFile('image')) {

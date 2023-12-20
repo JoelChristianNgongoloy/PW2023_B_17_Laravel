@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Mobil;
 use App\Models\User;
 use App\Models\Transaksi;
+use App\Models\Comment;
 use Illuminate\Http\Request;
-use Illuminate\Mail\Mailables\Content;
+// use Illuminate\Mail\Mailables\Content;
 use Illuminate\Support\Facades\Auth;
 
 class HomePageController extends Controller
@@ -26,9 +27,22 @@ class HomePageController extends Controller
 
     public function liatMobil($id)
     {
-        $mobil = Mobil::find($id);
+        if (Auth::check()) {
+            $user = Auth::user()->id;
+            $userLogin = User::find($user);
 
-        return view('contentCustomer.liatMobil', compact('mobil'));
+            $mobil = Mobil::find($id);
+            $komentarMobil = Comment::with('mobil', 'user')->where('id_mobil', $id)->get();
+
+            return view('contentCustomer.liatMobil', compact('userLogin', 'mobil', 'komentarMobil'));
+        }
+    }
+
+    public function hapusComment($id)
+    {
+        $komentar = Comment::find($id);
+        $komentar->delete();
+        return redirect()->back();
     }
 
 
@@ -73,17 +87,17 @@ class HomePageController extends Controller
         }
     }
 
-        public function Pembayaran($id)
-        {
-            $transaksi = Transaksi::find($id);
-            if ($transaksi) {
-                // Update the transaction with the status and date
-                $transaksi->status = 'Dibayar';
-                $transaksi->save();
-            }
-
-            return redirect('trackMobil');
+    public function Pembayaran($id)
+    {
+        $transaksi = Transaksi::find($id);
+        if ($transaksi) {
+            // Update the transaction with the status and date
+            $transaksi->status = 'Dibayar';
+            $transaksi->save();
         }
+
+        return redirect('trackMobil');
+    }
 
     public function Diterima($id)
     {
@@ -115,10 +129,33 @@ class HomePageController extends Controller
         return redirect('home');
     }
 
-    // public function trackMobil()
-    // {
-    //     $transaksi = Transaksi::latest()->get();
+    public function createComment(Request $request, $id)
+    {
 
-    //     return view('contentCustomer.trackMobil', compact('transaksi'));
-    // }
+        if (Auth::check()) {
+            $user = Auth::user()->id;
+            $userlogin = User::find($user);
+
+            $idMobil = Mobil::find($id);
+
+            Comment::create([
+                'id_user' => $userlogin->id,
+                'id_mobil' => $idMobil->id,
+                'ulasan' => $request->ulasan,
+            ]);
+
+            return redirect()->back();
+        }
+    }
+
+    public function updateComment(Request $request, $id)
+    {
+        $komentar = Comment::find($id);
+
+        $komentar->update([
+            'ulasan' => $request->ulasan,
+        ]);
+
+        return redirect()->back();
+    }
 }

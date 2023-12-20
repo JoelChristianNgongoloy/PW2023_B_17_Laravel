@@ -11,7 +11,7 @@
             border: 1px solid grey;
         }
 
-        #loadingAnimation,
+        /* #loadingAnimation,
         #successAnimation {
             transition: opacity 1s ease-in-out;
             position: absolute;
@@ -23,7 +23,7 @@
 
         .hidden {
             opacity: 2;
-        }
+        } */
 
 
         @media screen and (max-width: 576px) {
@@ -264,7 +264,7 @@
                                                             <p> : {{ date('d-M-Y') }}</p>
                                                         </td>
                                                     </tr>
-                                                    <div
+                                                    <!-- <div
                                                         style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; z-index: 2;">
                                                         <div id="loadingAnimation" style="display: none;">
                                                             <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
@@ -282,7 +282,7 @@
                                                                 style="width: 300px; height: 300px" direction="1"
                                                                 mode="normal" loop autoplay></dotlottie-player>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                 </table>
                                                 <form action = "{{ url('Pembayaran/' . $transaksi->id) }}"
                                                     method = "POST">
@@ -323,7 +323,7 @@
             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
         </script>
 
-        <script>
+        <!-- <script>
             function switchAnimation() {
                 var loadingAnimation = document.getElementById('loadingAnimation');
                 var successAnimation = document.getElementById('successAnimation');
@@ -342,5 +342,5 @@
                     }, 3000);
                 }, 1000);
             }
-        </script>
+        </script> -->
     @endsection

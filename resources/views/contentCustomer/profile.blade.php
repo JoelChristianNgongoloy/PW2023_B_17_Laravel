@@ -27,7 +27,7 @@
 
     <div class="container">
         <div class="content">
-            <div class="col">
+            <div class="row align-items-start">
                 <div class="col-lg-2">
                     <div class="card card-body h-100 justify-content-center">
                         <img style="border-radius: 50%, width: 100px, height:100px,"
@@ -35,7 +35,7 @@
                             class="img-fluid rounded img-bukti-ngantor" alt="Foto Profil" />
                     </div>
                 </div>
-                <div class="row-lg-10">
+                <div class="col-lg-10">
                     <div class="card card-body h-100 justify-content-center">
                         <h1 class="fw-bold">{{ Auth::user()->name }}</h1>
                         <h5 class="mb-3">{{ Auth::user()->username }}</h5>
@@ -56,11 +56,11 @@
                             </div>
                         </div>
                         <div class=" btndan mt-2 d-grid col-4 ">
-                            <div class="d-flex justify-content-arround">
+                            <div class="d-flex justify-content-arround gap-3">
                                 <a class="btn btn-danger" href="{{ route('actionLogout') }}"><i class="fa fa-user"></i>
                                     Logout</a>
                                 <a href="{{ url('profile/edit/' . Auth::user()->id) }}" class="btn btn-primary"
-                                    style="width: 70px" data-bs-toggle="modal" data-bs-target="#Backdrop">
+                                    style="width: 70px;" data-bs-toggle="modal" data-bs-target="#Backdrop">
                                     Edit
                                 </a>
                                 <div class="modal fade" id="Backdrop" data-bs-backdrop="static" data-bs-keyboard="false"

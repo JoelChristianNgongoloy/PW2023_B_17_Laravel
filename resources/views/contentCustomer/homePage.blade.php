@@ -175,7 +175,6 @@ Situs Jual Beli Mobil Online Terlengkap
             @forelse ($mobil as $item)
             <h3 class="mt-4">Mobil Merk {{ $item->merk }}</h3>
             <div class="col-12 col-md-3">
-                @if ($item->merk == 'Toyota' || $item->merk == 'Honda' || $item->merk == 'BMW')
                 <div class="card mb-4 shadow-sm">
                     <img style="height: 320px;" src="{{ asset('/public/images/' . $item->image) }}"
                         class="card-img-top object-fit-cover" alt="Foto Mobil">
@@ -191,7 +190,6 @@ Situs Jual Beli Mobil Online Terlengkap
                         </div>
                     </div>
                 </div>
-                @endif
             </div>
             @empty
             <div class="alert alert-danger">

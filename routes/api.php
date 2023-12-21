@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+Route::get('/mobil', [App\Http\Controllers\ApiMobilController::class, 'index']);
+Route::post('/mobil', [App\Http\Controllers\ApiMobilController::class, 'store']);
+Route::delete('/mobil/{id}', [App\Http\Controllers\ApiMobilController::class, 'destroy']);
+Route::put('/mobil/{id}', [App\Http\Controllers\ApiMobilController::class, 'update']);
+Route::get('/mobil/search', [App\Http\Controllers\ApiMobilController::class, 'search']);

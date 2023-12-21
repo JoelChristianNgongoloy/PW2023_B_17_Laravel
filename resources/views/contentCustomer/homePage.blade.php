@@ -172,7 +172,7 @@ Situs Jual Beli Mobil Online Terlengkap
                     </div>
                 </div>
             </div>
-            @forelse ($mobil as $item)
+            {{-- @forelse ($mobil as $item)
             <h3 class="mt-4">Mobil Merk {{ $item->merk }}</h3>
             <div class="col-12 col-md-3">
                 <div class="card mb-4 shadow-sm">
@@ -195,7 +195,7 @@ Situs Jual Beli Mobil Online Terlengkap
             <div class="alert alert-danger">
                 Mohon Bersabar ya guys
             </div>
-            @endforelse
+            @endforelse --}}
 
 
         </div>

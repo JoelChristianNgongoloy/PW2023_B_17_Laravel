@@ -195,7 +195,7 @@
         <nav class="navbar navbar-expand-lg fixed-top">
             <div class="container-fluid">
                 <a href="{{ url('home') }}">
-                    <img src="{{ asset('Img/MpLogo.png') }}" alt="Mobil Pilihan" class="logo">
+                    <img src="{{ asset('img/MpLogo.png') }}" alt="Mobil Pilihan" class="logo">
                 </a>
                 <div class="search-container" style="margin-right: 100px">
                     <form action="{{ url('home') }}" method="GET">

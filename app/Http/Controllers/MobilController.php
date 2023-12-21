@@ -31,9 +31,15 @@ class MobilController extends Controller
             'tahun_produksi' => 'required',
             'harga_mobil' => 'required',
             'warna' => 'required',
-            'deskripsi' => 'required',
+            'deskripsi' => ['required', 'max:200', function ($attribute, $value, $fail) {
+                $wordCount = str_word_count($value);
+
+                if ($wordCount > 50) {
+                    $fail('Deskripsi tidak boleh lebih dari 20 kata.');
+                }
+            }], 
             'stok' => 'required',
-            'merk' => 'required|in:Honda,Toyota,BMW',
+            'merk' => 'required',
         ]);
 
         if ($request->hasFile('image')) {
@@ -75,9 +81,15 @@ class MobilController extends Controller
             'tahun_produksi' => 'required',
             'harga_mobil' => 'required',
             'warna' => 'required',
-            'deskripsi' => 'required|max:255',
+            'deskripsi' => ['required', 'max:100', function ($attribute, $value, $fail) {
+                $wordCount = str_word_count($value);
+
+                if ($wordCount > 20) {
+                    $fail('Deskripsi tidak boleh lebih dari 20 kata.');
+                }
+            }],
             'stok' => 'required',
-            'merk' => 'required|in:Honda,Toyota,BMW',
+            'merk' => 'required',
         ]);
 
         if ($request->hasFile('image')) {

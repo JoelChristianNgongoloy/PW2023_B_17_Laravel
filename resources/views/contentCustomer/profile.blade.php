@@ -31,7 +31,12 @@
                 <div class="col-lg-2">
                     <div class="card card-body h-100 justify-content-center">
                         <img style="border-radius: 50%, width: 100px, height:100px,"
-                            src="{{ asset('/public/images/' . Auth::user()->img_profil) ?? asset('img/default.jpg') }}"
+                            @if (Auth::user()->img_profil !== null)
+                            src="{{ asset('/public/images/' . Auth::user()->img_profil)}} "
+                            @else
+                            src="{{ asset('img/default.jpg')}} "
+                            @endif
+                           
                             class="img-fluid rounded img-bukti-ngantor" alt="Foto Profil" />
                     </div>
                 </div>

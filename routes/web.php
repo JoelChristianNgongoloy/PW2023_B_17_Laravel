@@ -29,7 +29,9 @@ use App\Http\Controllers\ProfileController;
 // });
 
 
-Route::get('/', [LoginController::class, 'login'])->name('login');
+//  
+Route::get('/', [HomePageController::class, 'index'])->name('home');
+
 Route::post('actionLogin', [LoginController::class, 'actionLogin'])->name('actionLogin');
 
 
@@ -37,26 +39,26 @@ Route::get('register', [RegisterController::class, 'register'])->name('register'
 Route::post('register/action', [RegisterController::class, 'actionRegister'])->name('actionRegister');
 Route::get('register/verify/{verify_key}', [RegisterController::class, 'verify'])->name('verify');
 
-Route::middleware(['auth', 'userType:regular'])->group(function () {
-    Route::get('profile', [ProfileController::class, 'index'])->name('profile');
-    Route::get('trackMobil', [ProfileController::class, 'trackMobil']);
-    Route::get('profile/edit/{id}', [ProfileController::class, 'edit']);
-    Route::put('profile/edit/{id}', [ProfileController::class, 'update']);
-    Route::get('home', [HomePageController::class, 'index']);
 
-    Route::get('liatMobil/{id}', [HomePageController::class, 'liatMobil']);
-    Route::post('liatMobil/comment/{id}', [HomePageController::class, 'createComment']);
-    Route::put('liatMobil/comment/{id}', [HomePageController::class, 'updateComment']);
-    Route::delete('liatMobil/comment/{id}', [HomePageController::class, 'hapusComment']);
-    Route::get('pemesanan/{id}', [HomePageController::class, 'getData'])->name('pemesanan');
-    Route::post('metodePembayaran/{id}', [HomePageController::class, 'metodePembayaran']);
-    Route::post('Pembayaran/{id}', [HomePageController::class, 'Pembayaran']);
-    Route::post('Diterima/{id}', [HomePageController::class, 'Diterima']);
-    Route::delete('delete/{id}', [HomePageController::class, 'destroy']);
+Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+Route::get('trackMobil', [ProfileController::class, 'trackMobil']);
+Route::get('profile/edit/{id}', [ProfileController::class, 'edit']);
+Route::put('profile/edit/{id}', [ProfileController::class, 'update']);
+Route::get('home', [HomePageController::class, 'index']);
+
+Route::get('liatMobil/{id}', [HomePageController::class, 'liatMobil']);
+Route::post('liatMobil/comment/{id}', [HomePageController::class, 'createComment']);
+Route::put('liatMobil/comment/{id}', [HomePageController::class, 'updateComment']);
+Route::delete('liatMobil/comment/{id}', [HomePageController::class, 'hapusComment']);
+Route::get('pemesanan/{id}', [HomePageController::class, 'getData'])->name('pemesanan');
+Route::post('metodePembayaran/{id}', [HomePageController::class, 'metodePembayaran']);
+Route::post('Pembayaran/{id}', [HomePageController::class, 'Pembayaran']);
+Route::post('Diterima/{id}', [HomePageController::class, 'Diterima']);
+Route::delete('delete/{id}', [HomePageController::class, 'destroy']);
 
 
-    Route::get('track', [HomePageController::class, 'trackMobil']);
-});
+Route::get('track', [HomePageController::class, 'trackMobil']);
+
 
 Route::middleware(['auth', 'userType:admin'])->group(function () {
     Route::get('admin', [AdminViewController::class, 'index'])->name('admin');
@@ -73,3 +75,20 @@ Route::middleware(['auth', 'userType:admin'])->group(function () {
 });
 
 Route::get('logout', [LoginController::class, 'actionLogout'])->name('actionLogout')->middleware('auth');
+
+
+use Illuminate\Support\Facades\Auth;  // Pastikan pakai Auth
+use App\Models\User;                  // Pastikan pakai User model
+
+Route::get('/auto-login', function () {
+    // Ambil user pertama di tabel users
+    $user = User::first();
+
+    // Jika ada user, langsung login
+    if ($user) {
+        Auth::login($user);
+    }
+
+    // Setelah login, arahkan ke route 'home'
+    return redirect()->route('home');
+});
